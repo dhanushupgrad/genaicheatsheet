@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenAI Prerequisites Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.5em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+        
+        h2 {
+            color: #764ba2;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            border-left: 5px solid #764ba2;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .example {
+            background: #fff8e1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ffa726;
+        }
+        
+        .example strong {
+            color: #f57c00;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        pre code {
+            background: transparent;
+            padding: 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-right: 10px;
+        }
+        
+        .note {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .formula {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            text-align: center;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GenAI Prerequisites Guide</h1>
+        
+        <h2>What is a Token?</h2>
+        <p>A token is the most fundamental data unit in a text document, essential for enabling AI to understand and process information. Tokenization refers to breaking down larger texts into smaller, manageable pieces called tokens.</p>
+        
+        <p>A token is the basic unit of text that a language model processes. AI models break text into tokens (chunks) so they can compute probabilities for the next piece of text.</p>
+        
+        <div class="highlight">
+            <strong>A token can be:</strong>
+            <ul>
+                <li>A word (e.g., "cat")</li>
+                <li>A subword (e.g., "play" + "ing")</li>
+                <li>A punctuation mark (e.g., ".")</li>
+                <li>Even a single character depending on the tokenizer</li>
+            </ul>
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> I love machine learning!<br><br>
+            <strong>Possible tokenization (depends on tokenizer used):</strong>
+            <ul>
+                <li><strong>Word-level:</strong> ["I", "love", "machine", "learning", "!"] → 5 tokens</li>
+                <li><strong>Subword-level</strong> (common in GPT-like models): ["I", "love", "machine", "learn", "ing", "!"] → 6 tokens</li>
+                <li><strong>Character-level:</strong> ["I", " ", "l", "o", "v", "e", " ", "m", "a", "c", "h", "i", "n", "e", " ", "l", "e", "a", "r", "n", "i", "n", "g", "!"] → 24 tokens</li>
+            </ul>
+        </div>
+        
+        <h3>Why Tokens Matter</h3>
+        <ul>
+            <li><strong>Context Window:</strong> Models can only handle a fixed number of tokens (e.g., 4k, 16k, 128k).</li>
+            <li><strong>Cost & Speed:</strong> More tokens → higher compute cost and slower response.</li>
+            <li><strong>Precision:</strong> Tokenization affects how well the model understands rare words, names, or technical terms.</li>
+        </ul>
+        
+        <h2>Core GenAI Parameters</h2>
+        
+        <div class="note">
+            <strong>Key Parameters:</strong>
+            <ol>
+                <li>Temperature</li>
+                <li>Top-k Sampling</li>
+                <li>Top-p (Nucleus Sampling)</li>
+                <li>Max Tokens</li>
+                <li>Prompt / Context Window</li>
+                <li>Stop Sequences</li>
+                <li>Repetition Penalty / Frequency Penalty</li>
+                <li>Presence Penalty</li>
+            </ol>
+        </div>
+        
+        <h3>1. Context Window/Prompt</h3>
+        <p>The context window is the maximum number of tokens that you can provide to it at one time. This is how much text the model can "remember" at once.</p>
+        
+        <div class="highlight">
+            <strong>This includes:</strong>
+            <ul>
+                <li>System instructions</li>
+                <li>User messages</li>
+                <li>Assistant replies</li>
+            </ul>
+        </div>
+        
+        <p><strong>If the conversation exceeds the window:</strong></p>
+        <ul>
+            <li>Older tokens are forgotten</li>
+            <li>Reasoning may degrade</li>
+            <li>Small context window → misses details</li>
+            <li>Large context window → accurate summary</li>
+        </ul>
+        
+        <div class="example">
+            <strong>Example:</strong> "The Cat sat on the mat"<br>
+            Let us assume, we have 6 tokens in the above sentence.<br>
+            <strong>GPT-4o can process 128K tokens at a time</strong>
+        </div>
+        
+        <h3>2. Temperature</h3>
+        <p>Temperature is a parameter that controls the randomness in the model's output. Low values of temperature make the text more predictable and consistent, while high values let more freedom and creativity into the mix, but can also make things less consistent.</p>
+        
+        <p><strong>Think of it as a creativity knob.</strong></p>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>Low temperature (≈0.0–0.3)</strong> → predictable, factual, conservative</li>
+                <li><strong>Medium (≈0.7)</strong> → balanced</li>
+                <li><strong>High (≈1.0–1.5)</strong> → creative, surprising, sometimes chaotic</li>
+            </ul>
+        </div>
+        
+        <pre><code>from transformers import pipeline
+import warnings
+warnings.filterwarnings('ignore')
+
+generator = pipeline("text-generation", model="gpt2")
+
+output = generator(
+    "Once upon a time",
+    temperature=0.7,
+    do_sample=True  # Enables sampling (required for temp/top-p)
+)
+
+print("Model Response:", output[0]['generated_text'])</code></pre>
+        
+        <h3>3. Top-p (Nucleus Sampling)</h3>
+        <p>"Top_p" or nucleus sampling is a setting that decides how many possible words to consider. Top-p chooses the smallest set of tokens whose total probability ≥ p.</p>
+        
+        <div class="example">
+            <strong>Example:</strong><br>
+            If you ask for a title for an adventure book, with a top-p of 0.5, the model might come up with: "The Mystery of the Blue Mountain."<br><br>
+            <strong>Top_p = 0.9:</strong> This includes a lot more words in the choice, allowing for more variety and originality.<br>
+            For the same adventure book title and a top-p of 0.9, the model might create: "Voices from the Abyss: A Portrait of the Brave."
+        </div>
+        
+        <div class="note">
+            <span class="badge">✓ Best default</span> for most creative tasks<br>
+            <span class="badge">✓ More stable</span> than top-k
+        </div>
+        
+        <h3>Mixing Temperature and Top_p: What Happens?</h3>
+        <p>Combining "temperature" and "top_p" can give a wide range of text styles.</p>
+        
+        <ul>
+            <li>A <strong>low temperature with a high top-p</strong> can lead to coherent text with creative touches.</li>
+            <li>A <strong>high temperature with a low top-p</strong> might give you common words put together in unpredictable ways.</li>
+        </ul>
+        
+        <h4>What About Low Temperature and High Top_p?</h4>
+        <p>Here, answers are usually logical and consistent because of the low temperature, but they can still have rich vocabulary and ideas due to the high top-p. This setup is good for educational or informative texts where clarity is crucial, but you also want to keep the reader's interest.</p>
+        
+        <h4>And High Temperature with Low Top_p?</h4>
+        <p>This opposite setting often results in texts where sentences may make sense on their own but as a whole seem disconnected or less logical. The high temperature allows more variation in sentence building, while the low top-p limits word choices to the most likely ones. This can be useful in creative settings where you want unexpected results or to spark new ideas with unusual concept combinations.</p>
+        
+        <h3>4. Max Tokens</h3>
+        <p>Max tokens sets the maximum length of the model's response.</p>
+        
+        <div class="note">
+            <strong>Important:</strong> Tokens ≠ words<br>
+            <div class="formula">1 token ≈ ¾ of an English word (roughly)</div>
+            The model stops generating once it hits this limit, even mid-sentence.
+        </div>
+        
+        <div class="example">
+            <strong>Example - Prompt:</strong> Explain gravity.<br><br>
+            <strong>Max tokens = 20</strong> → "Gravity is a force that pulls objects with mass toward each other."<br>
+            <strong>Max tokens = 200</strong> → Full multi-paragraph explanation
+        </div>
+        
+        <h3>5. Stop Sequences</h3>
+        <p>If you see this text, stop generating immediately.</p>
+        
+        <div class="highlight">
+            <strong>Commonly used to:</strong>
+            <ul>
+                <li>End at "\nUser:"</li>
+                <li>Stop at "###"</li>
+                <li>Enforce format boundaries</li>
+            </ul>
+        </div>
+        
+        <pre><code>from transformers import AutoModelForCausalLM, AutoTokenizer
+import warnings
+warnings.filterwarnings('ignore')
+
+model_name = "gpt2"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
+
+prompt = "Write a short poem about the ocean.\nUser:"
+inputs = tokenizer(prompt, return_tensors="pt")
+
+output = model.generate(inputs["input_ids"], max_length=100)
+text = tokenizer.decode(output[0], skip_special_tokens=True)
+
+# Stop at "\nUser:" or "###"
+for stop_seq in ["\nUser:", "###"]:
+    if stop_seq in text:
+        text = text.split(stop_seq)[0]
+
+print("Response:", text)</code></pre>
+        
+        <h3>6. Repetition Penalty / Frequency Penalty</h3>
+        <p>Reduces the likelihood of repeating the same tokens. The higher the penalty, the more the model avoids repeating words/phrases. Useful for making outputs more diverse and natural.</p>
+        
+        <div class="example">
+            <strong>Example - Prompt:</strong> Write a paragraph about AI.<br><br>
+            <strong>Penalty = 0.0</strong> → "AI is powerful. AI is evolving. AI is everywhere."<br><br>
+            <strong>Penalty = 1.2</strong> → "Artificial intelligence is powerful, evolving rapidly, and shaping many industries."
+        </div>
+        
+        <pre><code>from transformers import AutoModelForCausalLM, AutoTokenizer
+
+model_name = "gpt2"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
+
+prompt = "Write a paragraph about AI."
+inputs = tokenizer(prompt, return_tensors="pt")
+
+# Try with different repetition penalties
+output_no_penalty = model.generate(
+    inputs["input_ids"],
+    max_length=50,
+    repetition_penalty=1.0  # No penalty
+)
+
+output_with_penalty = model.generate(
+    inputs["input_ids"],
+    max_length=50,
+    repetition_penalty=1.2  # Penalize repetition
+)
+
+print("Penalty = 1.0 →", tokenizer.decode(output_no_penalty[0], 
+                                          skip_special_tokens=True))
+print("Penalty = 1.2 →", tokenizer.decode(output_with_penalty[0], 
+                                           skip_special_tokens=True))</code></pre>
+        
+        <div class="example">
+            <strong>Output Example:</strong><br><br>
+            <strong>Penalty = 1.0 →</strong> Write a paragraph about AI. The first thing you need to do is to write a paragraph about AI. The first thing you need to do is to write a paragraph about AI. The first thing you need to do is...<br><br>
+            <strong>Penalty = 1.2 →</strong> Write a paragraph about AI. The first thing you need to do is write the following: "I am an engineer, and I..."
+        </div>
+        
+        <h2>Supporting Settings</h2>
+        <ul>
+            <li>Beam Search (less common in creative GenAI)</li>
+            <li>Seed (for reproducibility)</li>
+            <li>Batch Size & Sampling Strategy</li>
+        </ul>
+        
+    </div>
+</body>
+</html>
