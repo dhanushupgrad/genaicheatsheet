@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI - Exam-Ready Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffd89b 0%, #19547b 100%);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .key-points {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        ul li:before {
+            content: "▹";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 10px;
+            font-size: 1.2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 1.2em;
+        }
+
+        .process-steps {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .process-steps ol {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .process-steps ol li {
+            counter-increment: step-counter;
+            padding: 12px 0 12px 50px;
+            position: relative;
+        }
+
+        .process-steps ol li:before {
+            content: counter(step-counter);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 10px;
+            font-weight: bold;
+        }
+
+        .examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .example-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📘 GENERATIVE AI -- EXAM-READY NOTES</h1>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>1. Introduction to Generative AI</h2>
+                <div class="highlight">
+                    Generative AI refers to models that create new data similar to training data.
+                </div>
+
+                <h3>Key Points</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Generates text, images, audio, video, code</li>
+                        <li>Learns data distribution, not just labels</li>
+                        <li>Uses probabilistic modeling</li>
+                    </ul>
+                </div>
+
+                <h3>Generative vs Predictive Models</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Generative</th>
+                            <th>Predictive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Creates new data</td>
+                            <td>Predicts labels</td>
+                        </tr>
+                        <tr>
+                            <td>Models full distribution</td>
+                            <td>Models conditional probability</td>
+                        </tr>
+                        <tr>
+                            <td>Examples: GPT, Diffusion</td>
+                            <td>Examples: Logistic Regression</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>2. Transformer Architecture (Overview)</h2>
+                <div class="key-points">
+                    <ul>
+                        <li>Encoder, Decoder, Encoder--Decoder</li>
+                        <li>Attention mechanism</li>
+                        <li>Positional encoding</li>
+                    </ul>
+                </div>
+
+                <h3>Model Types</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>GPT → Decoder-only → text generation</li>
+                        <li>BERT → Encoder-only → understanding</li>
+                        <li>T5 → Encoder--Decoder → seq-to-seq tasks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>3. Diffusion Models <span class="star">⭐</span> (High-Weight Topic)</h2>
+                <div class="highlight">
+                    Used mainly for image generation
+                </div>
+
+                <h3>Working Principle</h3>
+                <div class="process-steps">
+                    <ol>
+                        <li>Forward Process -- Add noise step-by-step</li>
+                        <li>Reverse Process -- Learn to remove noise</li>
+                    </ol>
+                </div>
+
+                <h3>Applications</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Text-to-image generation</li>
+                        <li>Inpainting</li>
+                        <li>Style transfer</li>
+                        <li>Image enhancement</li>
+                    </ul>
+                </div>
+
+                <h3>Examples</h3>
+                <div class="examples">
+                    <span class="example-tag">Stable Diffusion</span>
+                    <span class="example-tag">DALL·E</span>
+                    <span class="example-tag">MidJourney</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>4. Prompt Engineering</h2>
+                <div class="highlight">
+                    Designing prompts to guide model behavior.
+                </div>
+
+                <h3>Types of Prompting</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Zero-shot -- No examples</li>
+                        <li>Few-shot -- With examples</li>
+                        <li>Chain-of-Thought (CoT) -- Step-by-step reasoning</li>
+                    </ul>
+                </div>
+
+                <h3>Prompt Design Strategies</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Clear instructions</li>
+                        <li>Role-based prompts</li>
+                        <li>Output format specification</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>5. Multimodal AI</h2>
+                <div class="highlight">
+                    Models that handle multiple data types together
+                </div>
+
+                <h3>Core Concepts</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Text + Image + Audio</li>
+                        <li>Joint embedding spaces</li>
+                    </ul>
+                </div>
+
+                <h3>Examples</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>CLIP -- text--image alignment</li>
+                        <li>BLIP / BLIP-2 -- vision-language transformers</li>
+                        <li>GPT-4V -- visual + language understanding</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>6. Evaluation of Generative AI</h2>
+                
+                <h3>Text Metrics</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>BLEU -- n-gram overlap</li>
+                        <li>ROUGE -- recall-based</li>
+                        <li>METEOR -- synonym-aware</li>
+                    </ul>
+                </div>
+
+                <h3>Image Metrics</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>FID -- realism & diversity</li>
+                        <li>Inception Score -- quality & uniqueness</li>
+                    </ul>
+                </div>
+
+                <h3>Human Evaluation</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>Helpfulness</li>
+                        <li>Creativity</li>
+                        <li>Coherence</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>7. Fine-Tuning in Gen AI</h2>
+                <div class="key-points">
+                    <ul>
+                        <li>Full fine-tuning</li>
+                        <li>PEFT (LoRA, QLoRA)</li>
+                        <li>Adapters</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>8. RAG (Retrieval-Augmented Generation)</h2>
+                <div class="key-points">
+                    <ul>
+                        <li>Combines retrieval + generation</li>
+                        <li>Uses vector databases</li>
+                        <li>Reduces hallucinations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>9. AI Agents & Multi-Agent Systems</h2>
+                <div class="key-points">
+                    <ul>
+                        <li>Tool-using agents</li>
+                        <li>Autonomous decision-making</li>
+                        <li>Collaborative agents</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>10. Ethics & AI Safety</h2>
+                <div class="key-points">
+                    <ul>
+                        <li>Bias & fairness</li>
+                        <li>Hallucinations</li>
+                        <li>Red teaming</li>
+                        <li>Explainable AI</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
