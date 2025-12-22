@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supporting Settings in GenAI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+        
+        h2 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 5px solid #667eea;
+        }
+        
+        h3 {
+            color: #555;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .formula {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-style: italic;
+            margin: 15px 0;
+            border-left: 3px solid #764ba2;
+        }
+        
+        .output {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        
+        .section-number {
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Supporting Settings</h1>
+        
+        <div class="info-box">
+            <strong>Topics Covered:</strong>
+            <ol>
+                <li>Beam Search (less common in creative GenAI)</li>
+                <li>Seed (for reproducibility)</li>
+                <li>Batch Size & Sampling Strategy</li>
+            </ol>
+        </div>
+
+        <h2><span class="section-number">1.</span> Beam Search</h2>
+        
+        <p>Traditional search methods like depth-first and breadth-first searches have limitations, especially when it comes to efficiency and memory usage. Where for that we have <strong>Beam Search</strong>.</p>
+        
+        <p>Beam Search is a heuristic-based approach that offers a middle ground between these traditional methods by balancing memory consumption and solution optimality.</p>
+        
+        <p>Beam search is a graph-based search technique that explores only a limited number of promising nodes (a beam). The beam width, which limits the number of nodes stored in memory, plays a crucial role in the performance and accuracy of the search.</p>
+
+        <h3>Heuristic Techniques</h3>
+        <p>These techniques help find the most efficient path from a starting point to a goal. Heuristic search operates within the search space of a problem to find the best or near-optimal solution using systematic algorithms.</p>
+        
+        <p>Unlike brute-force methods, which exhaustively evaluate all possible solutions, heuristic search leverages heuristic information to guide the search toward more promising paths.</p>
+
+        <h3>How it works (intuition)</h3>
+        <ul>
+            <li>At each step, the model explores several promising continuations</li>
+            <li>It scores full sequences, not just the next token</li>
+            <li>Finally, it selects the highest-probability sequence overall</li>
+        </ul>
+
+        <h3>Typical use cases</h3>
+        <ul>
+            <li>Machine translation</li>
+            <li>Speech recognition</li>
+            <li>Structured or factual generation</li>
+        </ul>
+
+        <div class="warning-box">
+            <strong>Warning:</strong> The secret HF_TOKEN does not exist in your Colab secrets. To authenticate with the Hugging Face Hub, create a token in your settings tab. You will be able to reuse this secret in all of your notebooks. Please note that authentication is recommended but still optional to access public models.
+        </div>
+
+        <h3>Example Code: Beam Search with T5</h3>
+        <pre><code>from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
+model_name = "t5-small"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+
+input_text = "Translate English to German: The house is wonderful."
+inputs = tokenizer(input_text, return_tensors="pt")
+
+# Beam search with 3 beams
+outputs = model.generate(
+    **inputs,
+    num_beams=3,           # number of beams
+    early_stopping=True    # stop when all beams reach EOS
+)
+
+print(tokenizer.decode(outputs[0], skip_special_tokens=True))</code></pre>
+
+        <div class="output">
+            <strong>Output:</strong> Das Haus ist wunderbar.
+        </div>
+
+        <h2><span class="section-number">2.</span> Seed (for reproducibility)</h2>
+        
+        <p>Randomness in sampling (temperature, top-p, etc.) means outputs vary. Setting a seed ensures you get the same result every run.</p>
+        
+        <p>A seed initializes the model's random number generator so that sampling decisions are repeatable.</p>
+
+        <h3>Why it matters</h3>
+        <div class="formula">
+            Same prompt + same seed + same settings = same output
+        </div>
+        
+        <p>Crucial for debugging, evaluation, and experiments.</p>
+
+        <h3>Common use cases</h3>
+        <ul>
+            <li>Research and benchmarking</li>
+            <li>A/B testing prompt changes</li>
+            <li>Regenerating exact outputs for review or auditing</li>
+        </ul>
+
+        <h3>Example Code: Setting Seeds</h3>
+        <pre><code>import torch
+import random
+import numpy as np
+
+# Set seeds for reproducibility
+torch.manual_seed(42)
+np.random.seed(42)
+random.seed(42)
+
+# Now every run will give the same sampled output
+outputs = model.generate(
+    **inputs,
+    do_sample=True,    # enable sampling
+    top_k=50,
+    max_length=40
+)
+
+print(tokenizer.decode(outputs[0], skip_special_tokens=True))</code></pre>
+
+        <div class="output">
+            <strong>Output:</strong> Das Haus ist wunderbar, die heutige Tradition zu haben, und die ganze Welt durch
+        </div>
+
+        <h2><span class="section-number">3.</span> Batch Size & Sampling Strategy</h2>
+        
+        <p>The number of prompts (or generations) processed simultaneously.</p>
+
+        <h3>Why it matters</h3>
+        <ul>
+            <li>Larger batches improve throughput and GPU utilization</li>
+            <li>Smaller batches reduce latency and memory use</li>
+        </ul>
+
+        <h3>Comparison Table</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Batch Size</th>
+                    <th>Advantage</th>
+                    <th>Downside</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Small</strong></td>
+                    <td>Faster response time</td>
+                    <td>Less efficient</td>
+                </tr>
+                <tr>
+                    <td><strong>Large</strong></td>
+                    <td>Higher throughput</td>
+                    <td>More memory, higher latency</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
