@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI - Exam Syllabus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header .emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 30px 0 20px 0;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .unit {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .unit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .unit h3 {
+            color: #667eea;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .unit ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .unit li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .unit li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .unit strong {
+            color: #764ba2;
+            font-weight: 600;
+        }
+
+        .subsection {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .subsection h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .tools-section {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tools-section h3 {
+            color: #d63031;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .unit {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="emoji">📘</div>
+            <h1>Generative Artificial Intelligence</h1>
+            <p style="font-size: 1.2em;">Exam Syllabus</p>
+        </div>
+
+        <div class="content">
+            <div class="section-label">(A)</div>
+
+            <div class="unit">
+                <h3>Unit I: Introduction to Generative Artificial Intelligence</h3>
+                <ul>
+                    <li>Concept of Generative AI</li>
+                    <li>Generative vs Predictive Models</li>
+                    <li>Types of Generative Content (Text, Image, Audio, Video, Code)</li>
+                </ul>
+            </div>
+
+            <div class="unit">
+                <h3>Unit II: Transformer Architectures</h3>
+                <ul>
+                    <li>Foundation Models</li>
+                    <li>Encoder, Decoder, Encoder–Decoder Architectures</li>
+                    <li>Attention Mechanism</li>
+                    <li>Positional Encoding</li>
+                    <li>Applications of Transformer Models</li>
+                    <li><strong>GPT (decoder-only)</strong>: autoregressive, next-token prediction</li>
+                    <li><strong>BERT (encoder-only)</strong>: masked token prediction for contextual embeddings</li>
+                    <li><strong>T5 (encoder-decoder)</strong>: sequence-to-sequence multitask learning</li>
+                </ul>
+            </div>
+
+            <div class="unit">
+                <h3>Unit III: Diffusion Models</h3>
+                <ul>
+                    <li>Diffusion Model Workflow</li>
+                    <li>Noise Injection and Denoising Process</li>
+                    <li>Text-to-Image Models</li>
+                    <li>Applications of Diffusion Models</li>
+                    <li><strong>Forward process</strong>: add noise to data (e.g., images)</li>
+                    <li><strong>Reverse process</strong>: learn how to denoise step-by-step</li>
+                    <li><strong>Stable Diffusion</strong></li>
+                    <li><strong>DALL·E</strong>, <strong>MidJourney</strong></li>
+                </ul>
+                <div class="subsection">
+                    <h4>Applications</h4>
+                    <ul>
+                        <li>Text-to-image generation</li>
+                        <li>Inpainting: filling in masked image regions</li>
+                        <li>Style transfer and enhancement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="unit">
+                <h3>Unit IV: Prompt Engineering</h3>
+                <ul>
+                    <li>Zero-shot Prompting</li>
+                    <li>Few-shot Prompting</li>
+                    <li>Chain-of-Thought Prompting</li>
+                    <li>Prompt Design Strategies</li>
+                    <li>Prompt Engineering Tools</li>
+                    <li><strong>Zero-shot</strong>: "What is the capital of France?"</li>
+                    <li><strong>Few-shot</strong>: Provide examples for structure</li>
+                    <li><strong>Chain-of-Thought</strong>: encourage reasoning step-by-step</li>
+                </ul>
+            </div>
+
+            <div class="unit">
+                <h3>Unit V: Multimodal Artificial Intelligence</h3>
+                <ul>
+                    <li>Multimodal Learning Concepts</li>
+                    <li>Vision–Language Models</li>
+                    <li>Text–Image–Audio Integration</li>
+                    <li>Applications of Multimodal AI</li>
+                    <li><strong>CLIP</strong>: connects text and images via embeddings</li>
+                    <li><strong>BLIP</strong>, <strong>BLIP-2</strong>: vision-language transformers</li>
+                    <li><strong>GPT-4V (Vision)</strong>: image + language prompts</li>
+                    <li><strong>Flamingo</strong>, <strong>Gemini</strong>: text, image, video, interleaved understanding</li>
+                </ul>
+            </div>
+
+            <div class="unit">
+                <h3>Unit VI: Evaluation of Generative AI Systems</h3>
+                <ul>
+                    <li>Text Evaluation Metrics</li>
+                    <li>Image Evaluation Metrics</li>
+                    <li>Human Evaluation Techniques</li>
+                </ul>
+                <div class="subsection">
+                    <h4>Text Metrics</h4>
+                    <ul>
+                        <li><strong>BLEU</strong>: overlap in n-grams (machine translation)</li>
+                        <li><strong>ROUGE</strong>: recall-based overlap for summarization</li>
+                        <li><strong>METEOR</strong>: synonym-aware evaluation</li>
+                    </ul>
+                </div>
+                <div class="subsection">
+                    <h4>Image Metrics</h4>
+                    <ul>
+                        <li><strong>FID (Fréchet Inception Distance)</strong>: visual realism and diversity</li>
+                        <li><strong>Inception Score (IS)</strong>: quality and uniqueness</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tools-section">
+                <h3>🧰 Tools & Libraries</h3>
+                <ul>
+                    <li><strong>Hugging Face Transformers, Diffusers</strong></li>
+                    <li><strong>OpenAI APIs (ChatGPT, DALL·E)</strong></li>
+                    <li><strong>Replicate, Stability AI, DreamStudio</strong></li>
+                    <li><strong>PromptLayer, LangChain (prompt chaining)</strong></li>
+                    <li><strong>Colab + Gradio for quick interfaces</strong></li>
+                </ul>
+            </div>
+
+            <div class="section-label">(B)</div>
+
+            <div class="unit">
+                <h3>Unit VII: Fine-Tuning of Language Models</h3>
+                <ul>
+                    <li>Fine-Tuning Approaches</li>
+                    <li>Parameter-Efficient Fine-Tuning (PEFT)</li>
+                    <li>LoRA and QLoRA</li>
+                    <li>Adapters</li>
+                    <li>Fine-Tuning Tools and Frameworks</li>
+                </ul>
+                <div class="subsection">
+                    <h4>Application</h4>
+                    <ul>
+                        <li><strong>Hugging Face PEFT + Transformers</strong></li>
+                        <li><strong>bitsandbytes</strong> for quantization</li>
+                        <li><strong>LLaMA.cpp</strong>, <strong>GGML</strong> for lightweight deployment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="unit">
+                <h3>Unit VIII: Advanced Training Techniques</h3>
+                <ul>
+                    <li>Reinforcement Learning from Human Feedback (RLHF)</li>
+                    <li>Direct Preference Optimization (DPO)</li>
+                    <li>Instruction Tuning</li>
+                    <li>Constitutional AI</li>
+                </ul>
+            </div>
+
+            <div class="unit">
+                <h3>Unit IX: Retrieval-Augmented Generation (RAG)</h3>
+                <ul>
+                    <li>Need for Retrieval-Augmented Generation</li>
+                    <li>RAG Architecture</li>
+                    <li>Embedding Models</li>
+                    <li>Vector Databases</li>
+                    <li>Orchestration Frameworks</li>
+                </ul>
+            </div>
+
+            <div class="unit">
+                <h3>Unit X: AI Agents and Multi-Agent Systems</h3>
+                <ul>
+                    <li>Agent-Based AI Systems</li>
+                    <li>Agent Frameworks</li>
+                    <li>Agent Architectures</li>
+                    <li>Multi-Agent Communication</li>
+                    <li>Collaborative Agent Systems</li>
+                </ul>
+            </div>
+
+            <div class="unit">
+                <h3>Unit XI: Applications of Generative AI</h3>
+                <ul>
+                    <li>Code Generation</li>
+                    <li>Scientific Applications</li>
+                    <li>Creative Applications</li>
+                    <li>Search and Productivity Applications</li>
+                </ul>
+            </div>
+
+            <div class="unit">
+                <h3>Unit XII: Ethics, Alignment, and AI Safety</h3>
+                <ul>
+                    <li>Bias and Fairness in AI Models</li>
+                    <li>Safety Risks in Generative AI</li>
+                    <li>Red Teaming Techniques</li>
+                    <li>Transparency and Interpretability</li>
+                    <li>Explainable AI</li>
+                </ul>
+            </div>
+
+            <div class="unit">
+                <h3>Unit XIII: Tools and Platforms</h3>
+                <ul>
+                    <li>Fine-Tuning and Experimentation Tools</li>
+                    <li>Retrieval and Tool-Use Frameworks</li>
+                    <li>Agent Development Frameworks</li>
+                    <li>Model Monitoring and Tracking Tools</li>
+                    <li>APIs and Hosted AI Models</li>
+                </ul>
+            </div>
+
+            <div class="unit">
+                <h3>Unit XIV: Project and Practical Applications</h3>
+                <ul>
+                    <li>Mini Projects</li>
+                    <li>Capstone Project</li>
+                    <li>Deployment and Demonstration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
